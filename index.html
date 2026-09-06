@@ -184,7 +184,7 @@
       .playlist-head,
       .work-row {
         display: grid;
-        grid-template-columns: 52px minmax(240px, 1.5fr) minmax(150px, 0.82fr) minmax(170px, 0.78fr) 88px;
+        grid-template-columns: 52px minmax(240px, 1.5fr) minmax(150px, 0.82fr) minmax(230px, 1.02fr) 88px;
         column-gap: 18px;
         align-items: center;
       }
@@ -322,7 +322,7 @@
       }
 
       .work-row .col-tag,
-      .work-row .col-url,
+      .work-row .col-made-with,
       .work-row .col-date {
         min-width: 0;
         overflow: hidden;
@@ -335,22 +335,7 @@
         letter-spacing: -0.006em;
       }
 
-      .work-row .col-url a {
-        display: inline-block;
-        max-width: 100%;
-        color: inherit;
-        text-decoration: none;
-        transition: color 180ms ease;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .work-row .col-url a:hover {
-        color: var(--green-bright);
-      }
-
-      .work-row .col-date {
+            .work-row .col-date {
         text-align: right;
         font-variant-numeric: tabular-nums;
       }
@@ -541,9 +526,9 @@
         }
 
         .playlist-head .col-tag,
-        .playlist-head .col-url,
+        .playlist-head .col-made-with,
         .work-row .col-tag,
-        .work-row .col-url {
+        .work-row .col-made-with {
           display: none;
         }
 
@@ -612,7 +597,7 @@
           <span class="col-index">#</span>
           <span class="col-title">TITLE</span>
           <span class="col-tag">TAG</span>
-          <span class="col-url">URL</span>
+          <span class="col-made-with">MADE WITH</span>
           <span class="col-date">DATE</span>
         </div>
         <div id="playlistRows" class="playlist-rows"></div>
@@ -646,20 +631,21 @@
 
     <script>
       const works = [
-        { section: "Copywriting", title: "Copy Optimization", tag: "Copywriting", url: "https://copyoptimization.vercel.app/", date: "2025.12" },
-        { section: "Copywriting", title: "Brand Story", tag: "Brand Voice, Copywriting", url: "https://brand-story-page.vercel.app/", date: "2026.1" },
-        { section: "Copywriting", title: "Landing Page", tag: "Brand Marketing", url: "https://slipper-dtc-landing-page.vercel.app/", date: "2026.2" },
-        { section: "Copywriting", title: "Copywriting", tag: "Copywriting", url: "https://2shortcopies.vercel.app/", date: "2026.3" },
-        { section: "Copywriting", title: "Landing Page", tag: "Brand Voice, Copywriting", url: "https://busu-dtc-landing-page.vercel.app/", date: "2026.4" },
-        { section: "Copywriting", title: "TVC Full Case", tag: "TVC, Video Campaign", url: "https://plant-awaken-tvc-full-case.vercel.app/", date: "2026.4" },
-        { section: "Commerce Ops", title: "Amazon Launch Plan Example", tag: "Amazon", url: "https://amazonlaunchplan.vikiclarkson.workers.dev/", date: "2026.1" },
-        { section: "Commerce Ops", title: "Shopify Store Redesign", tag: "Shopify", url: "https://shopify-rebuild.vercel.app/", date: "2026.3" },
-        { section: "Commerce Ops", title: "Amazon Skill Map", tag: "Amazon", url: "https://amazonopskillstack.pages.dev/", date: "2026.5" },
-        { section: "Commerce Ops", title: "DTC Brand System", tag: "Shopify", url: "https://dtcbrandingsystem.pages.dev/", date: "2026.5" },
+        { section: "Copywriting", title: "Copy Optimization", tag: "Copywriting", madeWith: "Gemini Pro", url: "https://copyoptimization.vercel.app/", date: "2025.12" },
+        { section: "Copywriting", title: "Brand Story", tag: "Brand Voice, Copywriting", madeWith: "Gemini Pro", url: "https://brand-story-page.vercel.app/", date: "2026.1" },
+        { section: "Copywriting", title: "Slipper DTC Website", tag: "Brand Marketing", madeWith: "Gemini Pro", url: "https://slipper-dtc-landing-page.vercel.app/", date: "2026.2" },
+        { section: "Copywriting", title: "Copywriting", tag: "Copywriting", madeWith: "Gemini Pro", url: "https://2shortcopies.vercel.app/", date: "2026.3" },
+        { section: "Copywriting", title: "BUSU Landing Page", tag: "Brand Voice, Copywriting", madeWith: "Gemini Pro", url: "https://busu-dtc-landing-page.vercel.app/", date: "2026.4" },
+        { section: "Copywriting", title: "TVC Full Case", tag: "TVC, Video Campaign", madeWith: "Kimi 2.6", url: "https://plant-awaken-tvc-full-case.vercel.app/", date: "2026.4" },
+        { section: "Commerce Ops", title: "Amazon Launch Plan Example", tag: "Amazon", madeWith: "Gemini Pro", url: "https://amazonlaunchplan.vikiclarkson.workers.dev/", date: "2026.1" },
+        { section: "Commerce Ops", title: "Shopify Store Redesign", tag: "Shopify", madeWith: "Gemini Pro", url: "https://shopify-rebuild.vercel.app/", date: "2026.3" },
+        { section: "Commerce Ops", title: "Amazon Skill Map", tag: "Amazon", madeWith: "ChatGPT 5.5", url: "https://amazonopskillstack.pages.dev/", date: "2026.5" },
+        { section: "Commerce Ops", title: "DTC Brand System", tag: "Shopify", madeWith: "ChatGPT 5.5", url: "https://dtcbrandingsystem.pages.dev/", date: "2026.5" },
         {
           section: "Vibe Coding",
           title: "Image Collage Tool",
           tag: "Image",
+          madeWith: "Claude Opus 4.5",
           url: "",
           date: "2026.2",
           preview: { src: "assets/videos/imagecollage.mp4", width: 3104, height: 1796 },
@@ -669,6 +655,7 @@
           section: "Vibe Coding",
           title: "My Bookshelf",
           tag: "Reading",
+          madeWith: "Claude Opus 4.5",
           url: "",
           date: "2026.2",
           preview: { src: "assets/videos/mybookshelf.mp4", width: 3104, height: 1796 },
@@ -678,6 +665,7 @@
           section: "Vibe Coding",
           title: "Upstand App",
           tag: "Health",
+          madeWith: "Claude Opus 4.6 + Codex",
           url: "",
           date: "2026.2",
           preview: { src: "assets/videos/upstand.mp4", width: 3104, height: 1748 },
@@ -687,13 +675,14 @@
           section: "Vibe Coding",
           title: "Loma App",
           tag: "Management",
+          madeWith: "ChatGPT 5.5",
           url: "",
           date: "2026.5",
           preview: { src: "assets/videos/lomaapp.mp4", width: 736, height: 1316 },
           description: "A management-focused app concept designed around clarity, calm hierarchy, and reduced operational noise."
         },
-        { section: "Vibe Marketing", title: "Campaign Poster", tag: "Marketing, Design", url: "https://vibemarketing-two.vercel.app/", date: "2026.2" },
-        { section: "Vibe Marketing", title: "Campaign Poster", tag: "Marketing, Design", url: "https://marketingportofolio.vikiclarkson.workers.dev/", date: "2026.4" }
+        { section: "Vibe Marketing", title: "Creative & Poster Redesign", tag: "Marketing, Design", madeWith: "Gemini Pro + ChatGPT 5.5 + 即梦", url: "https://vibemarketing-two.vercel.app/", date: "2026.2" },
+        { section: "Vibe Marketing", title: "Visual & Marketing", tag: "Marketing, Design", madeWith: "Gemini Pro + ChatGPT 5.5", url: "https://marketingportofolio.vikiclarkson.workers.dev/", date: "2026.4" }
       ];
 
       const sections = ["Copywriting", "Commerce Ops", "Vibe Coding", "Vibe Marketing"];
@@ -721,15 +710,6 @@
       let activeRow = null;
       let lastFocusedElement = null;
       let closeTimer = null;
-
-      function hostFromUrl(url) {
-        if (!url) return "—";
-        try {
-          return new URL(url).hostname.replace(/^www\./, "");
-        } catch {
-          return "—";
-        }
-      }
 
       function openExternal(url) {
         if (!url) return;
@@ -775,25 +755,15 @@
         tag.className = "col-tag";
         tag.textContent = work.tag;
 
-        const url = document.createElement("span");
-        url.className = "col-url";
-
-        if (work.url) {
-          const link = document.createElement("a");
-          link.href = work.url;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          link.textContent = hostFromUrl(work.url);
-          url.appendChild(link);
-        } else {
-          url.textContent = "—";
-        }
+        const madeWith = document.createElement("span");
+        madeWith.className = "col-made-with";
+        madeWith.textContent = work.madeWith || "—";
 
         const date = document.createElement("span");
         date.className = "col-date";
         date.textContent = work.date;
 
-        row.append(number, titleCell, tag, url, date);
+        row.append(number, titleCell, tag, madeWith, date);
         return row;
       }
 
@@ -1012,5 +982,6 @@
       scrollToSectionFromHash();
       window.addEventListener("hashchange", scrollToSectionFromHash);
     </script>
-  </body>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","spa":2}' crossorigin="anonymous"></script>
+</body>
 </html>
